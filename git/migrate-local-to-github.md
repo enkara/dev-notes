@@ -18,7 +18,7 @@ This guide explains how to manually migrate existing local Git repositories
 1. Go to [https://github.com/new](https://github.com/new)
 2. Choose:
    - **Owner:** `enkara`
-   - **Repository name:** `ti`
+   - **Repository name:** `project-x.`
 3. Select **Private**
 4. Leave all initialization options **unchecked**:
    - No README
@@ -31,7 +31,7 @@ This guide explains how to manually migrate existing local Git repositories
 ## 2. Verify the Local Repository
 
 ```bash
-cd /d/DevProjects/ti
+cd /d/DevProjects/project-x
 git status
 git remote -v
 ```
@@ -79,7 +79,7 @@ https://github.com/settings/tokens
 
 After the push completes, visit:
 
-https://github.com/enkara/ti
+https://github.com/enkara/project-x
 
 You should now see:
 
