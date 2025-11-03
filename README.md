@@ -16,7 +16,7 @@ This repository contains organized notes for various developer tools. Each secti
 ### Web Development  
 - [Tailwind CSS](./tailwind/tailwind-commands.md)
 - [React Cheatsheet](./react/react-cheatsheet.md) (coming soon...)
-- [React Redux](./react/react-redux.md)
+- [React Redux Cookbook](./react/redux-cookbook.md)
 
 ### Stack / Programming languages
 - [Rust Cheatsheet](./rust/rust-cheatsheet.md) (coming soon...)
