@@ -8,14 +8,17 @@ This repository contains organized notes for various developer tools. Each secti
 
 ## Topics
 
-### Build-Tools / Environment
+### Build-Tools / Environment / Scripting
 - [Git Commands](./git/git-commands.md)
 - [Docker Commands](./docker/docker-commands.md) (coming soon...)
 - [Maven Commands](./maven/maven-commands.md) (coming soon...)
 
 ### Web Development  
-- Tailwind CSS (./tailwind/)
+- [Tailwind CSS](./tailwind/tailwind-commands.md)
 - [React Cheatsheet](./react/react-cheatsheet.md) (coming soon...)
+- [React Redux](./react/react-redux.md)
+
+### Stack / Programming languages
 - [Rust Cheatsheet](./rust/rust-cheatsheet.md) (coming soon...)
 
 ### Blockchain
