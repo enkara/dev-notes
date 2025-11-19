@@ -24,6 +24,9 @@ This repository contains organized notes for various developer tools. Each secti
 ### Blockchain
 - [Solidity Notes](./solidity/solidity-notes.md) (coming soon...)
 
+### Code Analysis
+- [Trivy] (./code-analysis/trivy.md)
+
 ## How to Use
 
 1. Browse the folders for the topic you are interested in.
