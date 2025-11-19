@@ -9,23 +9,28 @@ This repository contains organized notes for various developer tools. Each secti
 ## Topics
 
 ### Build-Tools / Environment / Scripting
+
 - [Git Commands](./git/git-commands.md)
 - [Docker Commands](./docker/docker-commands.md) (coming soon...)
 - [Maven Commands](./maven/maven-commands.md) (coming soon...)
 
-### Web Development  
+### Web Development
+
 - [Tailwind CSS](./tailwind/tailwind-commands.md)
 - [React Cheatsheet](./reactjs/react-cheatsheet.md) (coming soon...)
 - [React Redux Cookbook](./reactjs/redux-cookbook.md)
 
 ### Stack / Programming languages
+
 - [Rust Cheatsheet](./rust/rust-cheatsheet.md) (coming soon...)
 
 ### Blockchain
+
 - [Solidity Notes](./solidity/solidity-notes.md) (coming soon...)
 
 ### Code Analysis
-- [Trivy] (./code-analysis/trivy.md)
+
+- [Trivy - Security Scanner](./code-analysis/trivy-guide.md)
 
 ## How to Use
 
@@ -40,4 +45,3 @@ If you have useful tips or additional commands, feel free to open a pull request
 ## License
 
 This repository is licensed under the MIT License.
-
