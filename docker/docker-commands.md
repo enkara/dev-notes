@@ -16,9 +16,9 @@ A curated list of useful Docker commands and references for everyday development
 - **Images** are like *classes* (blueprints).
 - **Containers** are like *objects* (runtime instances of images).
 - Images are typically downloaded (pulled) from a registry (e.g. Docker Hub).
-- Containers are local and can be created, stopped, removed, and recreated at any time.
+- Containers are local and can be created, stopped, removed and recreated at any time.
 
-General help:
+For help on any command:
 ```
 bash
 docker --help
@@ -26,7 +26,7 @@ docker image --help
 docker container --help
 docker network --help
 ```
-Example for a specific topic:
+Example for a specific command:
 ```
 bash
 docker network --help
@@ -41,16 +41,16 @@ bash
 # List all images on the local machine
 docker images
 
-# Same as:
+# Same as: docker image ls
 docker image ls
 ```
 ### Pull Images
 ```
 bash
-# Pull an image with a specific tag
+# Pull image with specific tag
 docker pull nginx:1.23
 
-# Pull the latest version (tag "latest" is default)
+# Pull the latest version (tag "latest" is the default)
 docker pull nginx
 docker pull nginx:latest
 ```
@@ -79,15 +79,15 @@ docker ps
 # List all containers, including stopped ones
 docker ps -a
 
-# Equivalent using the "container" subcommand
+# Equivalent commands using the "container" subcommand
 docker container ls
 docker container ls -a
 ```
 ### Run Containers
 ```
 bash
-# Run a container in detached mode (-d). If the image is not present
-# locally, it will be pulled first.
+# Run a container in detached mode (-d) from an image
+# If the image is not present locally, it will be pulled first
 docker run -d nginx:1.24
 
 # Run a container with a custom name
@@ -96,15 +96,15 @@ docker run -d --name my-nginx nginx:1.24
 # Map host port 8080 to container port 80
 docker run -d --name my-nginx -p 8080:80 nginx:1.24
 ```
-Useful `docker run` options:
+Useful options:
 
-- `-d` / `--detach` – run in the background  
-- `--name` – assign a readable container name  
-- `-p HOST:CONTAINER` – publish container port to the host  
-- `-e KEY=VALUE` – set environment variables  
-- `--rm` – automatically remove container when it exits  
+- `-d` / `--detach` – run in background
+- `--name` – assign a readable container name
+- `-p HOST:CONTAINER` – publish container ports to the host
+- `-e KEY=VALUE` – set environment variables
+- `--rm` – automatically remove container when it exits
 
-### Stop, Start & Restart
+### Stop & Start Containers
 ```
 bash
 # Stop a running container
@@ -131,6 +131,108 @@ docker container ls -qa
 # Remove all containers (running will be force-stopped)
 docker container ls -qa | xargs docker container rm -f
 ```
+---
+
+## 🧹 Removing Containers and Images Safely
+
+### 1. Stop and Remove a Single Container
+```
+bash
+# Stop container (replace <container_id> with the real ID or name)
+docker stop <container_id>
+
+# Remove container
+docker rm <container_id>
+```
+Example:
+```
+bash
+docker stop 76461223f84a
+docker rm   76461223f84a
+```
+### 2. Remove the Corresponding Image
+
+After the container is removed, you can delete the image:
+```
+bash
+# Remove image by ID
+docker rmi <image_id>
+```
+If container and image share the same ID (typical in your examples):
+```
+bash
+docker rmi 76461223f84a
+```
+If the image is still used by **other containers**, Docker will refuse to delete it.  
+In that case, stop/remove those containers first or use `docker rmi -f` (with care).
+
+---
+
+## 🧹 Cleaning Up Unused Images and Resources
+
+### Remove Unused Images Only
+```
+bash
+# Remove dangling images (untagged, <none>)
+docker image prune
+
+# Remove all unused images (not referenced by any container)
+docker image prune -a
+```
+### Remove Unused Containers, Networks, Images, Build Cache
+```
+bash
+# Dry clean: remove stopped containers, unused networks, dangling images, build cache
+docker system prune
+```
+### Aggressive Cleanup
+```
+bash
+# More aggressive: also remove all unused images and volumes
+docker system prune -a --volumes
+```
+Use the aggressive version only if you are sure you no longer need old containers/images/volumes.
+
+---
+
+## 🔍 Finding Image Repositories and Tags
+
+### List Local Images with Repository and Tag
+```
+bash
+# Show images with ID, repository, tag
+docker images --format "{{.ID}}: {{.Repository}}:{{.Tag}}"
+```
+Output example:
+```
+text
+76461223f84a: nginx:1.24
+a1b2c3d4e5f6: myregistry.local/myteam/myapp:2.0.1
+```
+- **Repository** column usually contains:
+  - the registry host (optional, e.g. `myregistry.local`), and
+  - the repository path (`nginx`, `myteam/myapp`, …).
+- **Tag** shows the version or tag (e.g. `1.24`, `latest`).
+
+### Inspect an Image
+```
+bash
+# Show detailed information about an image
+docker inspect <image_id_or_repo:tag>
+```
+Useful fields:
+
+- `RepoTags` – list of `repository:tag` entries the image currently has.
+- `Config.Image` / `Config.Labels` – sometimes contain additional metadata.
+
+**Important:** Docker does **not** store “where” (which registry URL) an image originally came from in a reliable way.  
+You usually infer it from the **repository name**:
+
+- `nginx:1.24` → from Docker Hub (official library)
+- `myregistry.local/myteam/myapp:2.0.1` → from your private registry `myregistry.local`
+
+If an image was **built locally** from a `Dockerfile`, it may not have any external registry at all.
+
 ---
 
 ## 🔍 Inspecting Containers & Logs
