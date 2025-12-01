@@ -105,8 +105,7 @@ Useful options:
 - `--rm` – automatically remove container when it exits
 
 ### Stop & Start Containers
-```
-bash
+``` bash
 # Stop a running container
 docker stop <CONTAINER_ID_OR_NAME>
 
@@ -117,8 +116,7 @@ docker start <CONTAINER_ID_OR_NAME>
 docker restart <CONTAINER_ID_OR_NAME>
 ```
 ### Remove Containers
-```
-bash
+``` bash
 # Remove a specific container (must be stopped)
 docker rm <CONTAINER_ID_OR_NAME>
 
@@ -136,8 +134,7 @@ docker container ls -qa | xargs docker container rm -f
 ## 🧹 Removing Containers and Images Safely
 
 ### 1. Stop and Remove a Single Container
-```
-bash
+``` bash
 # Stop container (replace <container_id> with the real ID or name)
 docker stop <container_id>
 
@@ -145,22 +142,19 @@ docker stop <container_id>
 docker rm <container_id>
 ```
 Example:
-```
-bash
+``` bash
 docker stop 76461223f84a
 docker rm   76461223f84a
 ```
 ### 2. Remove the Corresponding Image
 
 After the container is removed, you can delete the image:
-```
-bash
+``` bash
 # Remove image by ID
 docker rmi <image_id>
 ```
 If container and image share the same ID (typical in your examples):
-```
-bash
+``` bash
 docker rmi 76461223f84a
 ```
 If the image is still used by **other containers**, Docker will refuse to delete it.  
@@ -171,8 +165,7 @@ In that case, stop/remove those containers first or use `docker rmi -f` (with ca
 ## 🧹 Cleaning Up Unused Images and Resources
 
 ### Remove Unused Images Only
-```
-bash
+``` bash
 # Remove dangling images (untagged, <none>)
 docker image prune
 
@@ -180,14 +173,12 @@ docker image prune
 docker image prune -a
 ```
 ### Remove Unused Containers, Networks, Images, Build Cache
-```
-bash
+``` bash
 # Dry clean: remove stopped containers, unused networks, dangling images, build cache
 docker system prune
 ```
 ### Aggressive Cleanup
-```
-bash
+``` bash
 # More aggressive: also remove all unused images and volumes
 docker system prune -a --volumes
 ```
@@ -198,14 +189,12 @@ Use the aggressive version only if you are sure you no longer need old container
 ## 🔍 Finding Image Repositories and Tags
 
 ### List Local Images with Repository and Tag
-```
-bash
+``` bash
 # Show images with ID, repository, tag
 docker images --format "{{.ID}}: {{.Repository}}:{{.Tag}}"
 ```
 Output example:
-```
-text
+``` text
 76461223f84a: nginx:1.24
 a1b2c3d4e5f6: myregistry.local/myteam/myapp:2.0.1
 ```
@@ -215,8 +204,7 @@ a1b2c3d4e5f6: myregistry.local/myteam/myapp:2.0.1
 - **Tag** shows the version or tag (e.g. `1.24`, `latest`).
 
 ### Inspect an Image
-```
-bash
+``` bash
 # Show detailed information about an image
 docker inspect <image_id_or_repo:tag>
 ```
@@ -280,8 +268,7 @@ docker logs --tail 100 <CONTAINER_ID_OR_NAME>
 - `-t` – allocate a pseudo-TTY
 
 ### Run a Single Command in a Container
-```
-bash
+``` bash
 # Run 'ls -la' inside the container
 docker exec <CONTAINER_ID_OR_NAME> ls -la
 
@@ -293,14 +280,12 @@ docker exec -u root -it <CONTAINER_ID_OR_NAME> /bin/bash
 ## 🌐 Network Management
 
 ### List Networks
-```
-bash
+``` bash
 # List all Docker networks
 docker network ls
 ```
 ### Remove Networks
-```
-bash
+``` bash
 # Remove a specific network
 docker network rm <NETWORK_NAME_OR_ID>
 
@@ -311,14 +296,12 @@ docker network ls -q
 docker network ls -q | xargs docker network rm
 ```
 ### Prune Unused Networks
-```
-bash
+``` bash
 # Remove all unused networks
 docker network prune
 ```
 ### Connect Containers to Networks
-```
-bash
+``` bash
 # Attach a container to a network
 docker network connect <NETWORK_NAME> <CONTAINER_ID_OR_NAME>
 ```
@@ -327,8 +310,7 @@ docker network connect <NETWORK_NAME> <CONTAINER_ID_OR_NAME>
 ## 💾 Volumes & Data
 
 ### List & Inspect Volumes
-```
-bash
+``` bash
 # List all volumes
 docker volume ls
 
@@ -336,8 +318,7 @@ docker volume ls
 docker volume inspect <VOLUME_NAME>
 ```
 ### Create & Remove Volumes
-```
-bash
+``` bash
 # Create a named volume
 docker volume create my-data
 
@@ -348,8 +329,7 @@ docker volume rm my-data
 docker volume prune
 ```
 ### Use Volumes When Running Containers
-```
-bash
+``` bash
 # Mount a named volume into a container
 docker run -d --name my-nginx -v my-data:/usr/share/nginx/html nginx:1.24
 
@@ -359,8 +339,7 @@ docker run -d --name my-app -v "$(pwd)":/app my-image:latest
 ---
 
 ## 🛠️ Building Images
-```
-bash
+``` bash
 # Build an image from a Dockerfile in the current directory
 docker build -t my-image:1.0 .
 
@@ -373,8 +352,7 @@ docker history my-image:1.0
 ---
 
 ## 📤 Copying Files To/From Containers
-```
-bash
+``` bash
 # Copy from container to host
 docker cp <CONTAINER_ID_OR_NAME>:/path/in/container /path/on/host
 
@@ -384,8 +362,7 @@ docker cp /path/on/host <CONTAINER_ID_OR_NAME>:/path/in/container
 ---
 
 ## 🧹 Cleanup & Pruning
-```
-bash
+``` bash
 # Remove all stopped containers
 docker container prune
 
@@ -408,8 +385,7 @@ docker system prune -a --volumes
 ---
 
 ## 🚀 Quick Nginx Example
-```
-bash
+``` bash
 # 1. Pull Nginx image
 docker pull nginx:1.24
 

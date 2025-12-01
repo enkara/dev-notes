@@ -19,10 +19,11 @@ This repository contains organized notes for various developer tools. Each secti
 
 ### Git
 - [Git Commands](./git/git-commands.md)
-- [Migrate to Github](./git/migrate-local-to-github.md)
+- [Migrate local Git reposiory to Github](./git/migrate-local-to-github.md)
 
 ### Docker
 - [Docker Commands](./docker/docker-commands.md)
+- [Docker Compose Commands](./docker/docker-compose-commands.md)
 
 ### Databases
 - [SQL Cheatsheet](./databases/sql-cheatsheet.md) (coming soon...)
