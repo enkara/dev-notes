@@ -1,14 +1,6 @@
 # Node.js für Java-Entwickler
 
-## 1. Dieser Chat als `chat-node-js-erklart_DE.md`
-
-````markdown
-# Node.js, npm, npx & Build-Ökosystem – Erklärt wie Java/JVM
-
-> **Gespräch mit Grok (xAI)** – 04. November 2025  
-> Thema: Node.js im Vergleich zu Java/JVM, npm, Yarn, Builds, Repository, Cache
-
----
+ Node.js im Vergleich zu Java/JVM, npm, Yarn, Builds, Repository, Cache
 
 ## 1. Was ist Node.js?
 
@@ -29,7 +21,6 @@ http
   })
   .listen(3000);
 ```
-````
 
 ---
 
@@ -137,12 +128,6 @@ npm install --save-dev nodemon
 - [nodejs.org](https://nodejs.org)
 - [npmjs.com](https://npmjs.com)
 - Probiere: `npx create-vite@latest`
-
----
-
-_Erstellt mit ❤️ von Grok & dir_
-
-````
 
 ---
 
@@ -268,17 +253,3 @@ pbpaste | node chat-to-md.js /dev/stdin mein-chat.md
 ```
 
 (Kopiere Chat → `Cmd+V` → automatisch in `mein-chat.md`)
-
----
-
-**Fertig!**  
-Du hast jetzt:
-
-- Diesen Chat als MD
-- Ein **wiederverwendbares Tool** für alle zukünftigen Chats
-
-Möchtest du eine **Web-Version** davon (Drag & Drop)?  
-Oder eine **VS Code Extension**?  
-Oder direkt als **npm-Paket**?
-
-Sag Bescheid – wir bauen weiter!
