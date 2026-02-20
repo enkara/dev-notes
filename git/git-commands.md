@@ -150,11 +150,18 @@ git remote show origin
 # Show existing tags
 git tag -l
 
-# Create a new tag
+# Create a new tag, e.g. RV-0.0.1
 git tag RV-0.0.1 -m "My tag message"
 
-# Push all tags to remote
+# Push all tags belonging to the current commit to remote
 git push --follow-tags
+
+# Push all local tags to remote
+git push --tags
+
+# Push a single tags to remote 
+git push origin <tagname>
+
 ```
 
 **Reference:** [StackOverflow – Push a tag to remote](https://stackoverflow.com/questions/5195859/how-do-you-push-a-tag-to-a-remote-repository-using-git)
