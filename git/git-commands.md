@@ -70,6 +70,13 @@ If that doesn’t work, reset to a specific commit (only if commits were already
 git reset --hard <commit-hash>
 ```
 
+**Remove file from the staging area**<br>  
+To remove a file from the index (the staging area) and thus from version control without deleting it locally, you use:
+
+```bash
+git rm --cached <filename>
+```
+
 ---
 
 ## 🌿 Branches
