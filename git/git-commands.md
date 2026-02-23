@@ -202,3 +202,29 @@ git remote remove origin
 # Move or rename file or directory
 git mv <source> <destination>
 ```
+
+## 🚩Correcting the Last Commit (Before Pushing)
+If you have already committed changes but realized you left unwanted code (e.g., sensitive comments or debug logs) in your files, you can fix the commit without creating a new "fix-up" entry in your history.
+
+Prerequisites:
+The changes have not been pushed to a remote repository yet.
+You have already corrected the files in your working directory.
+
+Step-by-Step Guide:
+Stage your corrections:
+Add the fixed files to the staging area.
+
+```bash
+git add <filename>
+# or to stage all changes:
+git add .
+```
+Amend the commit:
+Update the last commit with your staged changes. The --no-edit flag keeps the original commit message.
+
+```bash
+git commit --amend --no-edit
+```
+Note: This command effectively replaces the last commit with a new one. Since you haven't pushed yet, this is safe and keeps your git history clean.
+
+---
