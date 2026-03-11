@@ -161,5 +161,16 @@ mvn verify -Pintegration-test-nb
 
 # Skip unit tests but run integration tests
 mvn verify -DskipTests -Pintegration-test-nb
+
 ```
+## 🔢 Maven: Set project version
+
+# Set new version (creates pom.xml.versionsBackup)
+mvn versions:set -DnewVersion=1.2.3
+
+# Confirm changes (removes backup files)
+mvn versions:commit
+
+# Revert changes (restore old version)
+mvn versions:revert
 ---
