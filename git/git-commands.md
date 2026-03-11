@@ -85,11 +85,26 @@ git rm --cached <filename>
 # Show remote branches
 git branch -r
 
+# list local branches
+git branch
+
+# Create and switch to a new branch
+git checkout -b feature/my-new-feature
+# or (modern)
+git switch -c feature/my-new-feature
+
 # Checkout a branch
 git checkout testbranch
 
-# Checkout a remote branch (if multiple remotes)
+# Checkout a remote branch (if multiple remotes)  
 git checkout -b testbranch origin/test
+
+
+# Push branch to remote (first time)
+git push -u origin feature/my-new-feature
+
+# Push subsequent commits
+git push
 
 # Switch back to master/main
 git checkout master
