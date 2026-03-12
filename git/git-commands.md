@@ -99,7 +99,6 @@ git checkout testbranch
 # Checkout a remote branch (if multiple remotes)  
 git checkout -b testbranch origin/test
 
-
 # Push branch to remote (first time)
 git push -u origin feature/my-new-feature
 
@@ -109,9 +108,27 @@ git push
 # Switch back to master/main
 git checkout master
 ```
+---
+## 🔄 Update feature branch with latest master
+```
+# Merge (safe, keeps merge commits)
+git checkout feature/my-feature
+git fetch origin
+git merge origin/master
+
+# OR: Rebase (clean, linear history)
+git checkout feature/my-feature
+git fetch origin
+git rebase origin/master
+
+# Abort rebase if needed
+git rebase --abort
+
+# Continue after resolving conflicts
+git rebase --continue
+```
 
 ---
-
 ## 🔄 Rebasing
 
 **References:**
