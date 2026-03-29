@@ -1,77 +1,215 @@
-# Git Commands 🧭
-
-A curated list of useful Git commands and references for everyday development.
+# Git Commands 🧭  
+A curated, structured, and developer‑friendly reference of essential Git commands for everyday work.
 
 ---
 
-## 🧱 Stash Commands
+# 1. 🌿 Branching & Feature Branch Workflows
 
-**References:**
+## 1.1 Creating Branches
 
-- [Atlassian Tutorial – Git Stash (DE)](https://de.atlassian.com/git/tutorials/saving-changes/git-stash)
-- [Useful Tricks with Git Stash – freeCodeCamp](https://medium.freecodecamp.org/useful-tricks-you-might-not-know-about-git-stash-e8a9490f0a1a)
+```bash
+# Create and switch to a new branch
+git checkout -b feature/my-new-feature
+
+# Modern alternative
+git switch -c feature/my-new-feature
+```
+
+Create a branch from a specific base:
+
+```bash
+git checkout -b feature/my-new-feature master
+```
+
+Push the new branch to remote:
+
+```bash
+git push -u origin feature/my-new-feature
+```
+
+---
+
+## 1.2 Keeping Your Feature Branch Up to Date
+
+### Option A — Merge (safe, keeps merge commits)
+
+```bash
+git checkout feature/my-feature
+git fetch origin
+git merge origin/master
+```
+
+### Option B — Rebase (clean, linear history)
+
+```bash
+git checkout feature/my-feature
+git fetch origin
+git rebase origin/master
+```
+
+Conflict handling:
+
+```bash
+git rebase --continue
+```
+
+Abort if needed:
+
+```bash
+git rebase --abort
+```
+
+---
+
+## 1.3 Merging a Feature Branch into `master`
+
+Standard workflow:
+
+```bash
+git checkout master
+git pull origin master
+git merge feature/jenkins-ci
+git push origin master
+```
+
+### Step-by-step
+
+1. Switch to master  
+   ```bash
+   git checkout master
+   ```
+
+2. Pull the latest state  
+   ```bash
+   git pull origin master
+   ```
+
+3. Merge the feature branch  
+   ```bash
+   git merge feature/jenkins-ci
+   ```
+
+4. Push the updated master  
+   ```bash
+   git push origin master
+   ```
+
+---
+
+## 1.4 Preparing Your Feature Branch Before Merge
+
+Check your working directory:
+
+```bash
+git status
+```
+
+If changes are uncommitted:
+
+```bash
+git add .
+git commit -m "Finalize Jenkins CI pipeline integration"
+```
+
+---
+
+## 1.5 Resolving Merge Conflicts
+
+After resolving conflicts manually:
+
+```bash
+git add <file>
+git commit
+git push origin master
+```
+
+---
+
+## 1.6 Cleaning Up Branches
+
+Delete locally:
+
+```bash
+git branch -d feature/jenkins-ci
+```
+
+Delete on remote:
+
+```bash
+git push origin --delete feature/jenkins-ci
+```
+
+---
+
+## 1.7 Compact Merge Workflow
+
+```bash
+git status
+git checkout master
+git pull origin master
+git merge feature/jenkins-ci
+git push origin master
+```
+
+---
+
+## 1.8 Branching Best Practices
+
+- Keep feature branches small and focused  
+- Rebase frequently to reduce conflict size  
+- Always pull latest master before merging  
+- Delete branches after merging  
+- Use consistent naming conventions:  
+  - `feature/...`  
+  - `bugfix/...`  
+  - `hotfix/...`  
+  - `chore/...`
+
+---
+
+# 2. 🧱 Stash Commands
+
+### References  
+- Atlassian Tutorial – Git Stash  
+- Useful Tricks with Git Stash – freeCodeCamp  
 
 ### Basic Usage
 
 ```bash
-# Save all your local work
 git stash
-
-# Save with a custom message
 git stash save "My message"
-
-# List all stashes (most recent is stash@{0})
 git stash list
-
-# Show a summary of changes in the latest stash
 git stash show
-
-# Show the changes from a specific stash
 git stash show stash@{2}
 ```
 
-### Applying and Removing Stashes
+### Applying & Removing Stashes
 
 ```bash
-# Apply your last stash and keep it
 git stash apply
-
-# Apply a specific stash
 git stash apply stash@{2}
-
-# Apply and remove it from the stash list
 git stash pop
-
-# Drop a stash manually
 git stash drop
-
-# Clear all stashes
 git stash clear
 ```
 
 ---
 
-## 🧹 Discarding Local Changes
+# 3. 🧹 Discarding Local Changes
 
 ```bash
-# Discard all local changes but keep them for reuse
 git stash
-
-# Discard changes to a specific file permanently
 git checkout -- <file>
-
-# Discard all local changes permanently
 git reset --hard
 ```
 
-If that doesn’t work, reset to a specific commit (only if commits were already pushed):
+Reset to a specific commit:
 
 ```bash
 git reset --hard <commit-hash>
 ```
 
-**Remove file from the staging area**<br>  
-To remove a file from the index (the staging area) and thus from version control without deleting it locally, you use:
+Remove file from staging:
 
 ```bash
 git rm --cached <filename>
@@ -79,87 +217,30 @@ git rm --cached <filename>
 
 ---
 
-## 🌿 Branches
+# 4. 🔄 Rebasing
+
+### References  
+- Atlassian: Merging vs Rebasing  
+- Git Book: Rebasing  
 
 ```bash
-# Show remote branches
-git branch -r
-
-# list local branches
-git branch
-
-# Create and switch to a new branch
-git checkout -b feature/my-new-feature
-# or (modern)
-git switch -c feature/my-new-feature
-
-# Checkout a branch
-git checkout testbranch
-
-# Checkout a remote branch (if multiple remotes)  
-git checkout -b testbranch origin/test
-
-# Push branch to remote (first time)
-git push -u origin feature/my-new-feature
-
-# Push subsequent commits
-git push
-
-# Switch back to master/main
-git checkout master
-```
----
-## 🔄 Update feature branch with latest master
-```
-# Merge (safe, keeps merge commits)
-git checkout feature/my-feature
-git fetch origin
-git merge origin/master
-
-# OR: Rebase (clean, linear history)
-git checkout feature/my-feature
-git fetch origin
-git rebase origin/master
-
-# Abort rebase if needed
-git rebase --abort
-
-# Continue after resolving conflicts
-git rebase --continue
-```
-
----
-## 🔄 Rebasing
-
-**References:**
-
-- [Merging vs Rebasing – Atlassian (DE)](https://de.atlassian.com/git/tutorials/merging-vs-rebasing)
-- [Git Book – Rebasing (DE)](https://git-scm.com/book/de/v1/Git-Branching-Rebasing)
-
-```bash
-# Rebase your work
 git rebase master
-
-# Abort an in-progress rebase
 git rebase --abort
-
-# Continue a paused rebase
 git rebase --continue
 ```
 
 ---
 
-## 🧰 Repository Maintenance
+# 5. 🧰 Repository Maintenance
 
-If you encounter errors like:
+If you see:
 
 ```
-Current branch master is up to date.
-Auto packing the repository in background for optimum performance.
+Auto packing the repository...
 error: failed to run repack...
 ```
 
-Try running garbage collection:
+Run:
 
 ```bash
 git gc --aggressive
@@ -167,15 +248,15 @@ git gc --aggressive
 
 ---
 
-## 🔗 Remote Repository Information
+# 6. 🔗 Remote Repository Information
 
-### Show Remote URL
+Show remote URL:
 
 ```bash
 git config --get remote.origin.url
 ```
 
-### Show Full Remote Info
+Show full remote info:
 
 ```bash
 git remote show origin
@@ -183,80 +264,53 @@ git remote show origin
 
 ---
 
-## 🏷️ Tagging
+# 7. 🌍 Remote Origin Management
 
 ```bash
-# Show existing tags
-git tag -l
-
-# Create a new tag, e.g. RV-0.0.1
-git tag RV-0.0.1 -m "My tag message"
-
-# Push all tags belonging to the current commit to remote
-git push --follow-tags
-
-# Push all local tags to remote
-git push --tags
-
-# Push a single tags to remote 
-git push origin <tagname>
-
-```
-
-**Reference:** [StackOverflow – Push a tag to remote](https://stackoverflow.com/questions/5195859/how-do-you-push-a-tag-to-a-remote-repository-using-git)
-
----
-
-## 🌍 Remote Origin Management
-
-```bash
-# Show connected repositories
 git remote -v
-
-# Change remote URL
 git remote set-url origin git://new.url.here
-
-# Example:
-git remote set-url origin http://myserver:3000/acompany/myrepo.git
-
-# Rename remote
 git remote rename origin origin-old
-
-# Remove remote
 git remote remove origin
 ```
 
 ---
 
-## 📦 Moving or Renaming Files
+# 8. 🏷️ Tagging
 
 ```bash
-# Move or rename file or directory
+git tag -l
+git tag RV-0.0.1 -m "My tag message"
+git push --follow-tags
+git push --tags
+git push origin <tagname>
+```
+
+---
+
+# 9. 📦 Moving or Renaming Files
+
+```bash
 git mv <source> <destination>
 ```
 
-## 🚩Correcting the Last Commit (Before Pushing)
-If you have already committed changes but realized you left unwanted code (e.g., sensitive comments or debug logs) in your files, you can fix the commit without creating a new "fix-up" entry in your history.
+---
 
-Prerequisites:
-The changes have not been pushed to a remote repository yet.
-You have already corrected the files in your working directory.
+# 10. 🚩 Correcting the Last Commit (Before Pushing)
 
-Step-by-Step Guide:
-Stage your corrections:
-Add the fixed files to the staging area.
+Stage corrections:
 
 ```bash
 git add <filename>
-# or to stage all changes:
+# or
 git add .
 ```
+
 Amend the commit:
-Update the last commit with your staged changes. The --no-edit flag keeps the original commit message.
 
 ```bash
 git commit --amend --no-edit
 ```
-Note: This command effectively replaces the last commit with a new one. Since you haven't pushed yet, this is safe and keeps your git history clean.
+
 
 ---
+
