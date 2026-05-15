@@ -18,7 +18,7 @@ git switch -c feature/my-new-feature
 Create a branch from a specific base:
 
 ```bash
-git checkout -b feature/my-new-feature master
+git checkout -b feature/my-new-feature main
 ```
 
 Push the new branch to remote:
@@ -36,7 +36,7 @@ git push -u origin feature/my-new-feature
 ```bash
 git checkout feature/my-feature
 git fetch origin
-git merge origin/master
+git merge origin/main
 ```
 
 ### Option B — Rebase (clean, linear history)
@@ -44,7 +44,7 @@ git merge origin/master
 ```bash
 git checkout feature/my-feature
 git fetch origin
-git rebase origin/master
+git rebase origin/main
 ```
 
 Conflict handling:
@@ -61,27 +61,27 @@ git rebase --abort
 
 ---
 
-## 1.3 Merging a Feature Branch into `master`
+## 1.3 Merging a Feature Branch into `main`
 
 Standard workflow:
 
 ```bash
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 git merge feature/jenkins-ci
-git push origin master
+git push origin main
 ```
 
 ### Step-by-step
 
-1. Switch to master  
+1. Switch to main  
    ```bash
-   git checkout master
+   git checkout main
    ```
 
 2. Pull the latest state  
    ```bash
-   git pull origin master
+   git pull origin main
    ```
 
 3. Merge the feature branch  
@@ -89,9 +89,9 @@ git push origin master
    git merge feature/jenkins-ci
    ```
 
-4. Push the updated master  
+4. Push the updated main  
    ```bash
-   git push origin master
+   git push origin main
    ```
 
 ---
@@ -120,7 +120,7 @@ After resolving conflicts manually:
 ```bash
 git add <file>
 git commit
-git push origin master
+git push origin main
 ```
 
 ---
@@ -145,10 +145,10 @@ git push origin --delete feature/jenkins-ci
 
 ```bash
 git status
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 git merge feature/jenkins-ci
-git push origin master
+git push origin main
 ```
 
 ---
@@ -157,7 +157,7 @@ git push origin master
 
 - Keep feature branches small and focused  
 - Rebase frequently to reduce conflict size  
-- Always pull latest master before merging  
+- Always pull latest main before merging  
 - Delete branches after merging  
 - Use consistent naming conventions:  
   - `feature/...`  
@@ -224,7 +224,7 @@ git rm --cached <filename>
 - Git Book: Rebasing  
 
 ```bash
-git rebase master
+git rebase main
 git rebase --abort
 git rebase --continue
 ```
