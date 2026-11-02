@@ -4,7 +4,8 @@ A curated collection of developer notes and command references (cheat sheets) fo
 
 ## Overview
 
-This repository contains organized notes for various developer tools. Each section links to a dedicated Markdown file with detailed commands, examples, and references.
+This repository contains organized notes for various developer tools. Each section links to a dedicated Markdown file with detailed commands,
+examples, and references.
 
 ## Topics
 
@@ -12,22 +13,29 @@ This repository contains organized notes for various developer tools. Each secti
 
 - [Maven Commands](./misc-cli/maven-commands.md)
 - [Gradle Commands](./misc-cli/gradle-commands.md)
-- [SVN Commands](./misc-cli/svn-commands.md)
 - [Winget Commands](./misc-cli/winget-commands.md)
 - [Shell Commands](./misc-cli/shell-commands.md)
 - [PowerShell Commands](./misc-cli/powershell-commands.md)
 
 ### Git
+
 - [Git Commands](./git/git-commands.md)
-- [Migrate local Git reposiory to Github](./git/migrate-local-to-github.md)
+- [Migrate local Git repository to Github](./git/migrate-local-to-github.md)
+
+### SVN
+
+- [SVN Commands](./svn/svn-commands-DE.md)
+- [SVN Feature Branch Workflow](./svn/svn-featurebranch-DE.md)
+- [SVN Status Codes](./svn/svn-status-meaning-DE.md)
 
 ### Docker
+
 - [Docker Commands](./docker/docker-commands.md)
 - [Docker Compose Commands](./docker/docker-compose-commands.md)
 
 ### Databases
-- [SQL Cheatsheet](./databases/sql-cheatsheet.md) (coming soon...)
 
+- [SQL Cheatsheet](./databases/sql-cheatsheet.md) (coming soon...)
 
 ### Web Development
 
@@ -59,7 +67,8 @@ This repository contains organized notes for various developer tools. Each secti
 This is primarily a personal collection of development notes and cheat sheets.  
 If you find it useful and want to contribute improvements or additional commands, feel free to open a pull request or issue.
 
-Please **do not** include any personal data, secrets or environment‑specific settings in contributions (e.g. real user names, access tokens, passwords, internal host names, production URLs, etc.).
+Please **do not** include any personal data, secrets or environment‑specific settings in contributions (e.g. real user names, access tokens,
+passwords, internal host names, production URLs, etc.).
 
 ## License
 
