@@ -26,6 +26,7 @@ examples, and references.
 
 - [SVN Commands](./svn/svn-commands-DE.md)
 - [SVN Feature Branch Workflow](./svn/svn-featurebranch-DE.md)
+- [TortoiseSVN Feature Branch Workflow](./svn/tortoisesvn-featurebranch-DE.md)
 - [SVN Status Codes](./svn/svn-status-meaning-DE.md)
 
 ### Docker
